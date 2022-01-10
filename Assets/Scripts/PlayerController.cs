@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRigidbody;
     [SerializeField] private float jumpForce = 400f;
     public float gravityModifiar = 1;
     private bool isOnTheGround = true;
+    public bool gameOver;
 
     void Start()
     {
+        gameOver = false;
         playerRigidbody = GetComponent<Rigidbody>();
         //playerRigidbody.AddForce(Vector3.up * jumpForce);
         Physics.gravity *= gravityModifiar;
@@ -34,7 +36,7 @@ public class PlayerControler : MonoBehaviour
 
         if (otherCollider.gameObject.CompareTag("Obstacle"))
         {
-            //Muero
+            gameOver = true;
         }
     }
 }
