@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3cfec5796177945beec3cf4e3871b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 12
 --- !u!65 &835818923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -644,8 +644,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685788920106614395, guid: 842804563ff9fb14488ac97ffabb127e,
         type: 3}
+      propertyPath: jumpForce
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685788920106614395, guid: 842804563ff9fb14488ac97ffabb127e,
+        type: 3}
       propertyPath: gravityModifiar
-      value: 0.9
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2357767548060816849, guid: 842804563ff9fb14488ac97ffabb127e,
         type: 3}
@@ -660,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 2357767548060846577, guid: 842804563ff9fb14488ac97ffabb127e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2357767548060846577, guid: 842804563ff9fb14488ac97ffabb127e,
         type: 3}
@@ -706,6 +711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245602897651789253, guid: 842804563ff9fb14488ac97ffabb127e,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8245602897651789253, guid: 842804563ff9fb14488ac97ffabb127e,
         type: 3}
