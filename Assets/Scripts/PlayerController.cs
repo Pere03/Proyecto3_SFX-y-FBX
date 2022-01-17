@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isOnTheGround = true;
     public bool gameOver;
     private Animator playerAnimator;
+    public ParticleSystem ExplosionParticleSystem;
+    public ParticleSystem TierraParticleSystem;
 
     void Start()
     {
@@ -23,27 +25,44 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnTheGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnTheGround && !gameOver)
         {
             playerRigidbody.AddForce(Vector3.up * jumpForce);
             isOnTheGround = false;
             playerAnimator.SetTrigger("Jump_trig");
+            TierraParticleSystem.Stop();
         }
+
+        
     }
 
     private void OnCollisionEnter(Collision otherCollider)
     {
-        if (otherCollider.gameObject.CompareTag("Ground"))
+        if(!gameOver)
         {
-            isOnTheGround = true;
-        }
+            if (otherCollider.gameObject.CompareTag("Ground"))
+            {
+                isOnTheGround = true;
+                TierraParticleSystem.Play();
+            }
 
-        if (otherCollider.gameObject.CompareTag("Obstacle"))
-        {
-            gameOver = true;
-            int randomDeath = Random.Range(1, 3);
-            playerAnimator.SetBool("Death_b", true);
-            playerAnimator.SetInteger("DeathType_int", randomDeath);
+            if (otherCollider.gameObject.CompareTag("Obstacle"))
+            {
+                gameOver = true;
+                int randomDeath = Random.Range(1, 3);
+                playerAnimator.SetBool("Death_b", true);
+                playerAnimator.SetInteger("DeathType_int", randomDeath);
+
+                /*ParticleSystem explosionEscena = 
+                Vector3 offset = new Vector3(0, 1.5, 0);
+                Instantiate(ExplosionParticleSystem, 
+                            transform.position + offset, 
+                    ExplosionParticleSystem.transform.rotation);
+                */
+                ExplosionParticleSystem.Play();
+                TierraParticleSystem.Stop();
+            }
         }
+        
     }
 }
